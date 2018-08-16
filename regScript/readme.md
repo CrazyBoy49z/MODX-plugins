@@ -20,7 +20,7 @@ This simple snippet takes your stylesheet path, inline style block, script path,
 [[regScript? 
     &src=`path/to/script.js` 
     &href=`path/to/style.css`
-    &code=`
+    &script=`
         function myFunction(p1, p2) {
             return p1 * p2; // The function returns the product of p1 and p2
         }`
@@ -39,9 +39,9 @@ This simple snippet takes your stylesheet path, inline style block, script path,
 
 A bit of an explanation, you have 6 options, somethings are taken as granted for you:
 
-- **src:** will auto place scrits before `</body>` unless `toHead` is true
-- **code:** will auto place `<script></script>` before `</body>` unless `toHead` is true 
-- **href:** will auto place stylesheets in `<head></head>` unless `toHead` is specficially set to false
+- **src:** will auto place scripts before `</body>` unless `toHead` is true
+- **script:** will auto place `<script></script>` before `</body>` unless `toHead` is true 
+- **href:** will auto place stylesheets in `<head></head>`
 - **style:** will auto place `<style></style>` blocks in the `<head></head>` unless `toHead` is specficially set to false
 - **HTML:** will auto place HTML block before `</body>` unless `toHead` is true
 
