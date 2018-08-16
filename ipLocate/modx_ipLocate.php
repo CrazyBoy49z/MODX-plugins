@@ -2,45 +2,18 @@
 
 /**
  * IP Locate 
- * =========
+ * ========= 
  * 
  * Locate the users GEO location based on their IP Address
  * 
- * Options 
- * -------
- * Set locate to 
- *  request
- *	status
- *	delay
- *	credit
- *	city
- *	region
- *	regionCode
- *	regionName
- *	areaCode
- *	dmaCode
- *	countryCode
- *	countryName
- *	inEU
- *	euVATrate
- *	continentCode
- *	continentName
- *	latitude
- *	longitude
- *	locationAccuracyRadius
- *	timezone
- *	currencyCode
- *	currencySymbol
- *	currencySymbol_UTF8
- *	currencyConverter
- *
  * Author: Nathanael McMillan (Inside Creative)
- * Ver: 0.0.1
+ * Ver: 0.0.2
  */
 
 $locate = $modx->getOption('locate', $scriptProperties, 'countryName');
 $debug = $modx->getOption('debug', $scriptProperties, false);
 $toPlace = $modx->getOption('toPlace', $scriptProperties, false);
+$prefix = $modx->getOption('prefix', $scriptProperties, 'ip');
 
 function get_client_ip()
 {
@@ -63,20 +36,31 @@ function get_client_ip()
 }
 
 $locationArray = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . get_client_ip()), true);
+    
+    // Check if $locate contains multpile 
+if (strpos($locate, '||') === false) {
 
-if ($toPlace) {
-    $modx->setPlaceholder($locate, $locationArray['geoplugin_' . $locate]);
-    return;
-}
+    if ($toPlace) {
+        $modx->setPlaceholder($locate, $locationArray['geoplugin_' . $locate]);
 
-if ($debug) {
-    return '<pre>' . print_r($locationArray, true) . '</pre>';
+    } else {
+        if ($debug) {
+            echo '<pre>' . print_r($locationArray, true) . '</pre>';
+        }
+
+        return $locationArray['geoplugin_' . $locate];
+    }
+
 } else {
-    return $locationArray['geoplugin_' . $locate];
+
+    $requests = explode('||', $locate);
+    $locateArray = array();
+
+    foreach ($requests as $requestName) {
+        $locateArray[$requestName] = $locationArray['geoplugin_' . $requestName];
+    }
+
+    $modx->setPlaceholders($locateArray, $prefix . '.');
 }
-    
-    
-    
-    
-    
-    
+
+return;
