@@ -1,6 +1,6 @@
 # IP Locate 
 
-Use geoplugin.net to return GEO location info based on the users IP Address. This snippet was originally created to change telephone number based on the users' location. Unlike most snippets, this should be called cached as the users' location is unlikely to change all that often. 
+Use geoplugin.net to return GEO location info based on the users IP Address. This snippet was created initially to change telephone number based on the users' location. Unlike most snippets, this should be called cached as the users' location is unlikely to change all that often. 
 
 ## Usage 
 
@@ -14,7 +14,7 @@ Use geoplugin.net to return GEO location info based on the users IP Address. Thi
     ]]
 ```
 
-You can also set multiple locate options just separate them by `||` if you use multiple options then by default they output directly to placeholders.
+You can also set multiple locate options by separating them with `||` if you use multiple options then by default they output directly to placeholders.
 
 ```HTML
     // Defaults 
@@ -25,7 +25,7 @@ You can also set multiple locate options just separate them by `||` if you use m
 
 ## Options 
 
-The request returns an array with the information below, you can return a specific field by defining it in the &locate=`` parameter. The default is countryName
+The request returns an array with the information below; you can return a specific field by defining it in the &locate=`` parameter. The default is countryName
 - request
 - status
 - delay
