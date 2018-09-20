@@ -1,12 +1,11 @@
 # IP Locate 
 
-Use geoplugin.net to return GEO location info based on the users IP Address. This snippet was created initially to change telephone number based on the users' location. Unlike most snippets, this should be called cached as the users' location is unlikely to change all that often. 
-
+Use geoplugin.net to return GEO location info based on the users IP Address. This snippet was created initially to change telephone number based on the users' location. 
 ## Usage 
 
 ```HTML
     // Defaults 
-    [[ipLocate?
+    [[!ipLocate?
         &locate=`countryName`
         &debug=`false`
         &toPlace=`false` // Unless multiple locate options are used then true 
